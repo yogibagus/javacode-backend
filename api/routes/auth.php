@@ -55,6 +55,21 @@ $app->post("/auth/login/", function ($request, $response) {
                 }
 
                 if ($roles != false && $check_token != false && $insert_token != false) {
+                    /**
+                     * Simpan user ke dalam session
+                     */
+                    if (isset($user)) {
+                        $_SESSION['user']['id']         = $user->id_user;
+                        $_SESSION['user']['username']   = $user->username;
+                        $_SESSION['user']['nama']       = $user->nama;
+                        $_SESSION['user']['m_roles_id'] = $user->m_roles_id;
+                        $_SESSION['user']['token']      = $token;
+                        $_SESSION['user']['akses']      = json_decode($roles->akses);
+                        $session = 'saved';
+                    } else {
+                        $session = 'not saved';
+                    }
+
                     // set user
                     $data_user = [
                         'id_user' => $user->id_user,
@@ -67,6 +82,7 @@ $app->post("/auth/login/", function ($request, $response) {
 
                     $result =  [
                         'user' => $data_user,
+                        'session' => $session
                     ];
 
                     return successResponse($response, $result);

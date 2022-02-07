@@ -43,7 +43,7 @@ $app->add(function ($request, $response, $next) {
     //     return unauthorizedResponse($response, ['Mohon maaf, anda tidak mempunyai akses']);
     // 
     if (!in_array($routeName, $publicRoutesArray) && $is_login == false) {
-        return unauthorizedResponse($response, ['Mohon maaf, anda tidak mempunyai akses']);
+        return unauthorizedResponse($response, ['Token tidak terdaftar. Tidak memiliki akses']);
     }
     /**
      * Return if isset session

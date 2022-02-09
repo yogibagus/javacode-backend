@@ -16,6 +16,7 @@ $app->add(function ($request, $response, $next) {
         'login',
         'session',
         'logout',
+        'session'
     );
     /**
      * Check session

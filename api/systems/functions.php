@@ -82,12 +82,12 @@ function getMenu($db)
 
 function getMenuByID($db, $id_menu)
 {
-    $db->select("a.id_menu, a.nama, a.harga, a.status, a.kategori, b.nama_kat_menu")
+    $db->select("a.id_menu, a.nama, a.harga, a.status, a.kategori, a.deskripsi, b.nama_kat_menu")
         ->from("m_menu as a")
         ->leftJoin('m_kategori_menu as b', 'a.kategori = b.id_kat_menu')
         ->where("a.is_deleted", "=", 0)
         ->andWhere("a.id_menu", "=", $id_menu);
-    return $db->findAll();
+    return $db->find();
 }
 
 function getTopping($db, $id_menu)

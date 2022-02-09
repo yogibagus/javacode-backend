@@ -6,21 +6,17 @@ $app->post("/promo/insert/", function ($request, $response) {
     $parsedBody = $request->getParsedBody();
     $nama = $parsedBody['nama'] ?? false;
     $type = $parsedBody['type'] ?? false;
-    $jenis = $parsedBody['jenis'] ?? false;
     $nominal = $parsedBody['nominal'] ?? false;
     $kadaluarsa = $parsedBody['kadaluarsa'] ?? false;
     $syarat_ketentuan = $parsedBody['syarat_ketentuan'] ?? false;
 
-    if ($nama != false && $type != false && $jenis != false && $nominal != false && $kadaluarsa != false && $syarat_ketentuan != false) {
+    if ($nama != false && $type != false && $nominal != false && $kadaluarsa != false && $syarat_ketentuan != false) {
         $data = [
             'nama' => $nama,
             'type' => $type,
-            'jenis' => $jenis,
             'nominal' => $nominal,
             'kadaluarsa' => $kadaluarsa,
             'syarat_ketentuan' => $syarat_ketentuan,
-            'created_by' => "",
-            'modified_by' => ""
         ];
 
         $db     = $this->db;
@@ -49,7 +45,6 @@ $app->get("/promo/", function ($request, $response) {
                 'id_promo' => $value->id_promo,
                 'nama' => $value->nama,
                 'type' => $value->type,
-                'jenis' => $value->jenis,
                 'nominal' => $value->nominal,
                 'kadaluarsa' => $value->kadaluarsa,
                 'syarat_ketentuan' => $value->syarat_ketentuan,
@@ -73,7 +68,6 @@ $app->get("/promo/{id_promo}", function ($request, $response) {
             'id_promo' => $getPromoByID->id_promo,
             'nama' => $getPromoByID->nama,
             'type' => $getPromoByID->type,
-            'jenis' => $getPromoByID->jenis,
             'nominal' => $getPromoByID->nominal,
             'kadaluarsa' => $getPromoByID->kadaluarsa,
             'syarat_ketentuan' => $getPromoByID->syarat_ketentuan,
@@ -94,20 +88,17 @@ $app->post("/promo/update/{id_promo}", function ($request, $response) {
     $parsedBody = $request->getParsedBody();
     $nama = $parsedBody['nama'] ?? false;
     $type = $parsedBody['type'] ?? false;
-    $jenis = $parsedBody['jenis'] ?? false;
     $nominal = $parsedBody['nominal'] ?? false;
     $kadaluarsa = $parsedBody['kadaluarsa'] ?? false;
     $syarat_ketentuan = $parsedBody['syarat_ketentuan'] ?? false;
 
-    if ($nama != false && $type != false && $jenis != false && $nominal != false && $kadaluarsa != false && $syarat_ketentuan != false && $id_promo != false) {
+    if ($nama != false && $type != false && $nominal != false && $kadaluarsa != false && $syarat_ketentuan != false && $id_promo != false) {
         $data = [
             'nama' => $nama,
             'type' => $type,
-            'jenis' => $jenis,
             'nominal' => $nominal,
             'kadaluarsa' => $kadaluarsa,
             'syarat_ketentuan' => $syarat_ketentuan,
-            'modified_by' => "",
         ];
 
         $db     = $this->db;

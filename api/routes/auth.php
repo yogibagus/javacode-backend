@@ -99,3 +99,9 @@ $app->post("/auth/login/", function ($request, $response) {
         return unprocessResponse($response, "Data not found");
     }
 })->setName('login');;
+
+
+$app->get("/auth/session/", function ($request, $response) {
+    $data = $_SESSION;
+    return unprocessResponse($response, $data);
+})->setName('session');;

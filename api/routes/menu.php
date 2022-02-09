@@ -7,13 +7,15 @@ $app->post("/menu/insert/", function ($request, $response) {
     $harga = $parsedBody['harga'] ?? false;
     $deskripsi = $parsedBody['deskripsi'] ?? false;
     $kategori = $parsedBody['kategori'] ?? false;
+    $status = $parsedBody['status'] ?? false;
 
-    if ($nama != false && $harga != false && $deskripsi != false && $kategori != false) {
+    if ($nama != false && $harga != false && $deskripsi != false && $kategori != false && $status != false) {
         $data = [
             'nama' => $nama,
             'harga' => $harga,
             'deskripsi' => $deskripsi,
             'kategori' => $kategori,
+            'status' => $status,
             'created_by' => "",
             'modified_by' => ""
         ];
@@ -67,11 +69,11 @@ $app->get("/menu/detail/{id_menu}", function ($request, $response) {
     if ($getMenu != false) {
         $db     = $this->db;
         $getTopping = getTopping($db, $id_menu);
-        ($getTopping == false ? $getTopping = "Topping tidak tersedia" : $getTopping);
+        ($getTopping == false ? $getTopping = [] : $getTopping);
 
         $db     = $this->db;
         $getLevel = getLevel($db, $id_menu);
-        ($getLevel == false ? $getLevel = "Level tidak tersedia" : $getLevel);
+        ($getLevel == false ? $getLevel = [] : $getLevel);
 
         $result = [
             'menu' => $getMenu,
@@ -126,14 +128,16 @@ $app->post("/menu/update/{id_menu}", function ($request, $response) {
     $harga = $parsedBody['harga'] ?? false;
     $deskripsi = $parsedBody['deskripsi'] ?? false;
     $kategori = $parsedBody['kategori'] ?? false;
+    $status = $parsedBody['status'] ?? false;
 
-    if ($id_menu != false && $nama != false && $harga != false && $deskripsi != false && $kategori != false) {
+    if ($id_menu != false && $nama != false && $harga != false && $deskripsi != false && $kategori != false && $status != false) {
         $db     = $this->db;
         $data = [
             'nama' => $nama,
             'harga' => $harga,
             'deskripsi' => $deskripsi,
             'kategori' => $kategori,
+            'status' => $status,
             'modified_by' => "",
             'modified_at' => ""
         ];
